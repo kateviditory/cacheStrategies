@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Стратегии замещения строк в КЭШ-памяти</title>
+        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>  
+        <script type="text/javascript" src="start.js"></script>
+        <script type="text/javascript" src="del.js"></script>
+        <script type="text/javascript" src="functions.js"></script>
+        <script type="text/javascript" src="failure.js"></script>
+        <script type="text/javascript" src="next.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="store" style="display: none;" data-strategy="" data-table2="" data-table3="" data-table4="" data-vd="" data-start="no"></div>
+        <div id="del" style="display: none;" data-elem="" data-tag1="" data-i="" data-string=""></div>
+
+        <table id="table1">
+            <tr><th colspan="2" class="noneborder">Адреса слов в ОП</th></tr>
+            <tr>
+                <th>string</th>
+                <th>word</th>
+            </tr>
+        </table>
+        
+        <table id="table2">
+            <tr><th class="noneborder">Память тегов</th></tr>
+            <tr>
+                <th>string tag</th>
+                <th>string number<br>in cash</th>
+            </tr>
+        </table>
+        
+        <table id="table3">
+            <tr><th class="noneborder">Память данных</th></tr>
+            <tr>
+                <th>№</th>
+                <th>Valid</th>
+                <th>Dirty</th>
+                <th>Data copy</th>
+            </tr>
+        </table>
+        
+        <table id="table4" style="display:none;">
+            <thead>
+                <tr><th class="noneborder">Стек</th></tr>
+                <tr>
+                    <th class="string">String</th>
+                    <th class="count">Счетчик обращений</th>
+                    <th class="time">Временная метка</th>
+                </tr>
+            </thead>
+            <tbody id="table4body">
+            </tbody>
+        </table>
+        
+        <table id="table5" style="display:none;">
+            <tr><th class="noneborder">Стек</th></tr>
+            <tr><td>Empty stack</td></tr>
+        </table>
+        
+        <div class="parameters">
+            <br><br><br>      
+            <input type='button' id='forward' onclick="next()" value="Вперёд"/><br>
+            <input type='button' id='back' onclick="back()" value="Назад"/><br>
+            <input type='button' id='delete' onclick="del()" value="Удалить строку"/><br>
+            <input type='radio' id='option1' name='option' onclick="option(1)"/>с сохранением в ОП<br>
+            <input type='radio' id='option2' name='option' onclick="option(2)"/>без сохранения в ОП<br><br><br><br>
+            <input type='radio' id='rnd' class="strategy" name='type' value='RND' onclick="start(value); startRND()"/>RND<br>
+            <input type='radio' id='lfu' class="strategy" name='type' value='LFU' onclick="start(value); startLFUandMRU()"/>LFU<br>
+            <input type='radio' id='lru' class="strategy" name='type' value='LRU' onclick="start(value); startLRU()"/>LRU<br>
+            <input type='radio' id='mru' class="strategy" name='type' value='MRU' onclick="start(value);startLFUandMRU()"/>MRU<br>
+            <input type='radio' id='fifo' class="strategy" name='type' value='FIFO' onclick="start(value); startFIFO()"/>FIFO<br>
+<!--             <input type='radio' id='arc' class="strategy" name='type' value='ARC' onclick="start(value); startARC()"/>ARC<br> -->
+        </div>
+        
+        
+        <script>
+            //загружаю данные в таблицы из файла mainVariants.json
+            var fs = require('fs');
+            var obj;
+            fs.readFile('resources/app/mainStrategies/mainVariants.json', 'utf8', function (err, data) {
+              if (err) throw err;
+              obj = JSON.parse(data);
+              $.each(obj, function(idx, elem){
+                  if (idx<20) $('#table1').append('<tr><td class="tag1">'+elem.tag1+'</td><td>'+elem.word +'</td></tr>');
+                  else if(idx>19 && idx<36) $('#table2').append('<tr><td class="tag2">'+elem.tag2+'</td><td>'+elem.ncash +'</td></tr>');
+                  else if(idx>35 && idx<52) $('#table3').append('<tr><td>'+elem.number+'</td><td class="valid">'+elem.valid +'</td><td class="dirty">'+elem.dirty +'</td><td class="data">'+elem.data +'</td></tr>');
+                  else if (idx>51) $('#table4body').append('<tr><td class="string">'+elem.string+'</td><td class="count">'+elem.count +'</td><td class="time">'+elem.time +'</td></tr>');
+              });
+            });  
+
+            //блокирую кнопки, до тех пор пока не будет выбрана стратегия   
+            document.getElementById("forward").disabled = true;
+            document.getElementById("back").disabled = true;
+            document.getElementById("delete").disabled = true;
+            document.getElementById("option1").disabled = true;
+            document.getElementById("option2").disabled = true;
+        </script>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>СAR</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1 class="variant">Выберите вариант</h1>
+	<select id="variant" class="variant">
+		<option value="0" selected>Значение не выбрано</option>
+	 	<option value="1">Вариант 1</option>
+	 	<option value="2">Вариант 2</option>
+	 	<option value="3">Вариант 3</option>
+	</select>
+
+
+	<div class="processor hide">
+		<table id="processor"><caption>Адреса слов в ОП</caption><THEAD><tr><td>string</td><td>word</td></tr></THEAD><TBODY></TBODY></table>
+	</div>
+	<div class="tags hide">
+		<table id="tags"><caption>Память тегов</caption><THEAD><tr><td>string tag</td><td>string number in cash</td></tr></THEAD><TBODY></TBODY></table>
+	</div>
+	<div class="cache hide">
+		<table id="cache"><caption>Память данных</caption><THEAD><tr><td>№</td><td>Valid</td><td>Dirty</td><td>Data copy</td></tr></THEAD><TBODY></TBODY></table>
+	</div>
+	<div class="CAR hide">
+		<h1>Стек CAR</h1>
+		<div class="L1">
+			<table id="t1"><caption>T1</caption><THEAD><tr><td>Data</td><td>Page reference bit</td></tr></THEAD><TBODY></TBODY></table>
+			<table id="b1"><caption>B1</caption><THEAD><tr><td>Link</td><td>Page reference bit</td></tr></THEAD><TBODY></TBODY></table>
+		</div>
+		<div class="L2">
+			<table id="t2"><caption>T2</caption><THEAD><tr><td>Data</td><td>Page reference bit</td></tr></THEAD><TBODY></TBODY></table>
+			<table id="b2"><caption>B2</caption><THEAD><tr><td>Link</td><td>Page reference bit</td></tr></THEAD><TBODY></TBODY></table>
+		</div>
+	</div>
+	<div class="buttons hide">
+		<h3>Комментарии</h3>
+		<textarea id="comments" disabled></textarea>
+		<h3>Параметр р</h3>
+		<textarea id="parameter" disabled>8</textarea>
+		<br>
+		<br>
+		<br>
+		<br>
+		<input type="button" value="Вперёд" id="next">
+		<input type="button" value="Назад" id="back">
+		<input type="button" value="Добавить строку" id="add">
+		<input type="button" value="Удалить строку" id="delete">
+		<input type='radio' id='option1' name='option' onClick="option1()"/>
+		<label for="option1">с сохранением в ОП</label><br>
+		<input type='radio' id='option2' name='option' onClick="option2()"/>
+		<label for="option2">без сохранения в ОП</label>
+		<br>
+		<br>
+		<br>
+		<br>
+	</div>
+	<!-- <script src="carFunctions.js"></script> -->
+	<script src="functions.js"></script>
+	<script src="main.js"></script>
+</body>
+</html>

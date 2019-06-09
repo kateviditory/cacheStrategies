@@ -1,0 +1,63 @@
+html * {
+    font-size: 16px;
+}
+
+.selected {
+    background: blue;
+}
+
+.hit {
+    background: green !important;
+}
+
+.parameters {
+    display: inline-table;
+}
+
+input {
+    margin: 10px 0;
+}
+
+table {
+    display: inline;
+}
+
+caption, #table2, #table3, #table4 {
+    top: 50px;
+}
+
+
+table {
+    margin-right: 30px;
+}
+
+#table5 td {
+    color: white;
+}
+
+.hide {
+    display: none;
+}
+
+.noneborder {
+    border: none;
+}
+
+.count,.time {
+    width: 100px !important;
+}
+
+th,td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+}
+
+caption {
+    font-weight: bold;
+}
+
+.op {
+    background: white !important;
+    border: none;
+}
