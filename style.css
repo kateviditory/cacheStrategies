@@ -1,0 +1,106 @@
+@keyframes fadein {
+  from {
+    background-color: #fff;
+    opacity: 0;
+  }
+  to {
+    background-color: #181818;
+    opacity: 1;
+  }
+}
+
+html {
+  background-color: #181818;
+  color: #e9e9e9;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  animation: fadein 1s;
+}
+
+.container {
+	height: 100vh;
+}
+
+.svg-wrapper {
+	position: relative;
+	width: 600px;
+	height: 125px;
+	margin: 0 auto;
+	top: 15%;
+}
+
+.shape {
+  fill: transparent;
+  stroke: #19f6e8;
+}
+
+.title {
+  position: relative;
+  top: -110px;
+  text-align: center;
+  font-family: 'Roboto Condensed';
+  font-size: 28px;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dasharray: 140 540;
+    stroke-width: 5px;
+  }
+  100% {
+    stroke-dasharray: 1450;
+    stroke-dashoffset: 0;
+    stroke-width: 2px;
+  }
+}
+
+.svg-wrapper:hover .shape {
+  -webkit-animation: 1.5s draw linear forwards;
+  animation: 1.5s draw linear forwards;
+}
+
+.Info {
+	position: relative;
+	top: 20%;
+	margin: 0 auto;
+	width: 45%;
+}
+
+ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+ol li {
+  counter-increment: my-awesome-counter;
+  display: flex;
+  width: 95%;
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+ol li a:hover {
+  color: #19f6e8;
+}
+
+ol li::before {
+  content: "0" counter(my-awesome-counter);
+  font-weight: bold;
+  font-size: 3rem;
+  margin-right: 0.5rem;
+  font-family: 'Abril Fatface', serif;
+  line-height: 1;
+}
+
+p.sections {
+  font-size: 26px;
+}
+
+a {
+  text-decoration: none;
+  color: #e9e9e9;
+}
